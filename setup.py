@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='extupdate',
-    version='1.0.0',
+    version='1.0.1',  # Updated version number
     description='EXTUPDATE',
     url='https://github.com/sorzkode/',
     author='Mister Riley',

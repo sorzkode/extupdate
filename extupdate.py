@@ -20,7 +20,7 @@ Mister Cohen
 https://github.com/bcherb2
 
 MIT License
-Copyright (c) 2023 Mister Riley
+Copyright (c) 2024 Mister Riley
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -42,26 +42,30 @@ app_menu = [
     ["&Help", ["&Usage", "&About"]],
 ]
 
+# Font variables
+font_title = ("Lucida", 14, BOLD)
+font_button = ("Lucida", 12, BOLD)
+font_text = ("Lucida", 11, ITALIC)
+
 # Directory selection
 def select_folder():
     dirselect = filedialog.askdirectory()
     # Error handling if no selection
     if not dirselect:
         sg.popup_cancel("No folder selected", grab_anywhere=True, keep_on_top=True)
-        return
+        return None
     return dirselect
-
 
 # All GUI elements
 layout = [
     [sg.Menu(app_menu, tearoff=False, key="-MENU-")],
     [sg.Image(filename="assets\extuplogo.png", key="-LOGO-")],
     [
-        sg.Button("Select Folder", font=("Lucida", 12, BOLD), pad=(5, 15)),
+        sg.Button("Select Folder", font=font_button, pad=(5, 15)),
         sg.In(
             "Select Folder Path...",
             size=60,
-            font=("Lucida", 11, ITALIC),
+            font=font_text,
             text_color="Gray",
             readonly=True,
             enable_events=True,
@@ -69,7 +73,7 @@ layout = [
         ),
     ],
     [
-        sg.Text("Curent Extension:", font=("Lucida", 14, BOLD)),
+        sg.Text("Curent Extension:", font=font_title),
         sg.OptionMenu(
             values=[
                 ".xls",
@@ -85,7 +89,7 @@ layout = [
             key="-CURRENTEXT-",
             disabled=True,
         ),
-        sg.Text("Updated Extension:", font=("Lucida", 14, BOLD)),
+        sg.Text("Updated Extension:", font=font_title),
         sg.OptionMenu(
             values=[
                 ".xls",
@@ -104,13 +108,12 @@ layout = [
     ],
     [
         sg.Button(
-            "Update Extensions", font=("Lucida", 12, BOLD), pad=(5, 15), disabled=True
+            "Update Extensions", font=font_button, pad=(5, 15), disabled=True
         ),
-        sg.Button("Clear All", font=("Lucida", 12, BOLD), pad=(5, 15), disabled=True),
-        sg.Button("Exit", font=("Lucida", 12, BOLD), pad=(5, 15)),
+        sg.Button("Clear All", font=font_button, pad=(5, 15), disabled=True),
+        sg.Button("Exit", font=font_button, pad=(5, 15)),
     ],
 ]
-
 
 class ext_window:
     def __init__(self, window):
@@ -134,12 +137,15 @@ class ext_window:
     def select_folder_gui(self) -> None:
         try:
             self.selected_path = select_folder()
-            self.clear_window_defaults()
-            self.window["-FOLDER-"].update(self.selected_path, text_color="Black")
-        except:
-            sg.popup("Select a valid file path...try again", keep_on_top=True)
+            if self.selected_path:
+                self.clear_window_defaults()
+                self.window["-FOLDER-"].update(self.selected_path, text_color="Black")
+        except Exception as e:
+            sg.popup(f"Error: {e}", keep_on_top=True)
 
     def find_files_in_path(self) -> list[str]:
+        if not self.selected_path:
+            return []
         # Find all files in selected path
         files = [
             f
@@ -152,6 +158,9 @@ class ext_window:
         return files
 
     def update_entensions_gui(self) -> None:
+        if not self.selected_path:
+            sg.popup("No folder selected", keep_on_top=True)
+            return
 
         current_extension = self.values["-CURRENTEXT-"]
         updated_extension = self.values["-UPDATEDEXT-"]
@@ -172,8 +181,7 @@ class ext_window:
                 os.rename(file_path, new_file_path)
             sg.popup(f"Updated {len(files)} files", keep_on_top=True)
         except Exception as e:
-            sg.popup(f"{e} - try again", keep_on_top=True)
-            return
+            sg.popup(f"Error: {e}", keep_on_top=True)
 
     def about_gui(self):
         sg.popup(
@@ -234,7 +242,6 @@ class ext_window:
                     self.usage_gui()
 
         self.window.close()
-
 
 if __name__ == "__main__":
     ext_window(sg)

@@ -6,7 +6,18 @@
 
 # Ext Update
 
-Quickly update / change all Microsoft Excel file extensions in a directory of your choosing.
+Ext Update is a convenient tool that allows you to quickly update or change the file extensions of Microsoft Excel files in a directory of your choosing. With just a few simple steps, you can modify multiple file extensions at once, saving you time and effort.
+
+## Features
+
+- Easy installation and usage
+- Supports bulk extension updates
+- Intuitive user interface with dropdown menus
+- Provides warnings for potential loss of functionality when changing certain file extensions
+
+Whether you need to standardize file extensions or convert files to a different format, Ext Update simplifies the process and helps you manage your Excel files more efficiently.
+
+Give it a try and streamline your file extension updates today!
 
 ## Example
 
@@ -14,13 +25,17 @@ Quickly update / change all Microsoft Excel file extensions in a directory of yo
 
 ## Installation
 
-Download from Github, changedir (cd) to the script directory and run the following:
-```
-pip install -e .
-```
-*This will install the ExtUpdate package locally 
+To install Ext Update, follow these steps:
 
-Installation isn't required to run the script but you will need to ensure the requirements below are met.
+1. Download the Ext Update package from GitHub.
+2. Open a terminal and change the directory (cd) to the script directory.
+3. Run the following command to install the package:
+  ```
+  pip install -e .
+  ```
+  This will install the Ext Update package locally.
+
+Note: Installation is not required to run the script, but you will need to ensure that the following requirements are met.
 
 ## Requirements
 
