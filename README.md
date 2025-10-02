@@ -4,18 +4,23 @@
 
 ![alt text](https://raw.githubusercontent.com/sorzkode/extupdate/master/assets/extupgit.png)
 
-# Ext Update
+# EXTUPDATE - Excel Extension Manager
 
-Ext Update is a convenient tool that allows you to quickly update or change the file extensions of Microsoft Excel files in a directory of your choosing. With just a few simple steps, you can modify multiple file extensions at once, saving you time and effort.
+EXTUPDATE is a tool for bulk conversion of Microsoft Excel file extensions. Built with tkinter, it converts Excel files across directories with backup creation, recursive processing, and conversion history tracking.
 
 ## Features
 
-- Easy installation and usage
-- Supports bulk extension updates
-- Intuitive user interface with dropdown menus
-- Provides warnings for potential loss of functionality when changing certain file extensions
+- **Batch conversion** - Convert multiple Excel files at once
+- **tkinter GUI** - Clean interface with dropdown menus
+- **Backup creation** - Optional backup before conversion
+- **Recursive processing** - Include subfolders in operations
+- **File preview** - View files with metadata (size, modification date)
+- **Conversion history** - Track operations with timestamps
+- **Compatibility warnings** - Alerts for potential functionality loss
+- **Progress tracking** - Real-time progress bar
+- **Menu system** - Access to history, settings, and help
 
-Whether you need to standardize file extensions or convert files to a different format, Ext Update simplifies the process and helps you manage your Excel files more efficiently.
+Standardize file extensions, convert legacy formats, or prepare files for specific applications.
 
 Give it a try and streamline your file extension updates today!
 
@@ -25,52 +30,68 @@ Give it a try and streamline your file extension updates today!
 
 ## Installation
 
-To install Ext Update, follow these steps:
+### Option 1: Download Executable (No Python Required)
+Download the latest `EXTUPDATE.exe` from the [Releases](https://github.com/sorzkode/extupdate/releases) page and run directly.
 
-1. Download the Ext Update package from GitHub.
-2. Open a terminal and change the directory (cd) to the script directory.
-3. Run the following command to install the package:
-  ```
-  pip install -e .
-  ```
-  This will install the Ext Update package locally.
+### Option 2: Install with Python
+**Install directly from GitHub:**
+```bash
+pip install git+https://github.com/sorzkode/extupdate.git
+```
 
-Note: Installation is not required to run the script, but you will need to ensure that the following requirements are met.
+**Or install locally:**
+1. Download/clone the repository
+2. Navigate to the project directory
+3. Run:
+```bash
+pip install .
+```
 
 ## Requirements
 
-The install above should take care of requirments.
-
-Alternatively you can run: pip install -r requirements.txt
-
-  [[Python 3](https://www.python.org/downloads/)]
-
-  [[PySimpleGUI module](https://pypi.org/project/PySimpleGUI/)]
-
-  [[tkinter](https://docs.python.org/3/library/tkinter.html)] :: Linux Users
+- **For executable**: None - runs on any Windows machine
+- **For Python version**: Python 3.8+ with tkinter (included with most Python installations)
 
 ## Usage
 
-If Ext Update is installed you can use the following command syntax:
+**Executable:**
+```bash
+# Simply run the downloaded file
+EXTUPDATE.exe
 ```
-python -m extupdate
+
+**Python installation:**
+```bash
+extupdate
 ```
-Otherwise you can run the script directly by changing directory (cd) in a terminal of your choice to the Ext Update directory and using the following syntax:
-```
+
+**Run directly from source:**
+```bash
 python extupdate.py
 ```
-Once the script is initiated: 
+Once the script is running:
 ```
-  1. Click the "Select Folder" button.
-  2. Select the extension you want to change from the "Current Extension" dropdown.
-  3. Select what you want to change the extension to from the "Updated Extension" dropdown.
-  4. Select the "Update Extensions" button to execute.
+  1. Click "Select Folder" to choose a directory containing Excel files
+  2. Select the current extension from the "Current Extension" dropdown
+  3. Select the target extension from the "Convert to" dropdown
+  4. Optional: Enable backup creation and/or recursive search
+  5. Review files in the preview list
+  6. Click "Update Extensions" to start conversion
+```
+
+Additional features:
+```
+  * View conversion history from the Tools menu
+  * Check compatibility warnings before converting
+  * Monitor progress with the real-time progress bar
+  * Create backups automatically before conversion
 ```
 
 Things to note:
 ```
-  * Changing Excel file extensions may cause a loss of functionality depending on which extension types you change.
-  * If you aren't confident / don't know the differences between file types and their functionality - you may want to make copies of your files first.
+  * Changing Excel file extensions may cause functionality loss depending on format compatibility
+  * Enable backup creation when converting between incompatible formats
+  * Use recursive search to include files in subfolders
 ```
 
 

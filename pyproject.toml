@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "extupdate"
+version = "2.0.0"
+description = "Excel extension manager for bulk file conversion"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "sorzkode", email = "sorzkode@proton.me"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business",
+    "Topic :: Utilities",
+]
+keywords = ["excel", "file", "extension", "conversion", "bulk"]
+requires-python = ">=3.8"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/sorzkode/extupdate"
+Repository = "https://github.com/sorzkode/extupdate"
+Issues = "https://github.com/sorzkode/extupdate/issues"
+
+[project.scripts]
+extupdate = "extupdate:main"
+
+[project.gui-scripts]
+extupdate-gui = "extupdate:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["extupdate.py"]
